@@ -392,7 +392,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2840883829030643444}
-  - component: {fileID: 8701517307825256404}
+  - component: {fileID: 7458719198808588717}
   - component: {fileID: 5385536510082005257}
   m_Layer: 7
   m_Name: Obstacle
@@ -418,7 +418,7 @@ Transform:
   - {fileID: 6302710547374561666}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8701517307825256404
+--- !u!114 &7458719198808588717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -427,10 +427,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6735720904383927260}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38b9a693a477c14ab46f7c2cafca1dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 053d5639827749e3b83bd38d1eb9ddc7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: ArmoredCar::GameUnits.BasicEnemy
+  m_EditorClassIdentifier: FacturaTest::GameUnits.Obstacle
   _hpBar: {fileID: 4419436770252667719}
+  _renderer: {fileID: 6202515276002113774}
+  _meshRenderer: {fileID: 6202515276002113774}
 --- !u!65 &5385536510082005257
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -532,5 +534,10 @@ PrefabInstance:
 --- !u!4 &5069063181680624513 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7d3fa2300f5ca1545bdc8401ba13f9f1, type: 3}
+  m_PrefabInstance: {fileID: 4742949453955638378}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6202515276002113774 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 7d3fa2300f5ca1545bdc8401ba13f9f1, type: 3}
   m_PrefabInstance: {fileID: 4742949453955638378}
   m_PrefabAsset: {fileID: 0}

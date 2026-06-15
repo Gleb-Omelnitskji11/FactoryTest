@@ -11,6 +11,7 @@ namespace GameServices
     public class LevelLoader : MonoBehaviour
     {
         [SerializeField] private Vector3 _carStartPos = new Vector3(0, 0.5f, -48.6f);
+        [SerializeField] private Material _materialForDamaged;
 
         private PlayerCar _car;
         private GameConfig _gameConfig;
@@ -36,6 +37,7 @@ namespace GameServices
             _eventBus.Subscribe<GameResultEvent>(OnGameEnd);
             _eventBus.Subscribe<RestartEvent>(Restart);
             _eventBus.Subscribe<PauseEvent>(OnPause);
+            Unit.SetDamagedMaterial(_materialForDamaged);
         }
 
         private void OnDestroy()

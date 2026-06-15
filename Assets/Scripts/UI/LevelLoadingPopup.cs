@@ -40,11 +40,11 @@ namespace UI
         {
             _cts = new CancellationTokenSource();
             _button.onClick.AddListener(StartCountdown);
-            _eventBus.Subscribe<StartGame>(TurnOn);
+            _eventBus.Subscribe<StartGameEvent>(TurnOn);
             TurnOn(null);
         }
 
-        private void TurnOn(StartGame signal)
+        private void TurnOn(StartGameEvent signal)
         {
             Show();
             _levelText.text = string.Format(LevelFormat, _playerProgress.CurrentLevel);

@@ -192,6 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCar
   _hpBar: {fileID: 6038234621714706153}
+  _renderer: {fileID: 8822832380035404006}
   _turret: {fileID: 3542102668480827331}
   _wheels:
   - {fileID: 6592599819660041854}
@@ -687,5 +688,10 @@ Transform:
 --- !u!4 &7654944612591397769 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b2ce668e80e740e419434a2b15b4a5e7, type: 3}
+  m_PrefabInstance: {fileID: 7904216383770168418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8822832380035404006 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: b2ce668e80e740e419434a2b15b4a5e7, type: 3}
   m_PrefabInstance: {fileID: 7904216383770168418}
   m_PrefabAsset: {fileID: 0}

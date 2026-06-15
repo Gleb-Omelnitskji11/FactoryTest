@@ -1358,6 +1358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelProgression
   _carStartPos: {x: 0, y: 0.57, z: -33.39}
+  _materialForDamaged: {fileID: 2100000, guid: 80344f180d74d624aa76177eb0a2b7ff, type: 2}
 --- !u!1 &1724456425
 GameObject:
   m_ObjectHideFlags: 0
@@ -2033,6 +2034,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 364834939481265921, guid: df777687f76176445b28acb722d8c6d2, type: 3}
+      propertyPath: _meshRenderer
+      value: 
+      objectReference: {fileID: 5623167060657129110}
     - target: {fileID: 3084562519942267600, guid: df777687f76176445b28acb722d8c6d2, type: 3}
       propertyPath: m_Name
       value: Car
@@ -2101,16 +2106,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14e4fcf0004dc34b9c88730d8dbe460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCar
+--- !u!23 &5623167060657129110 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8822832380035404006, guid: df777687f76176445b28acb722d8c6d2, type: 3}
+  m_PrefabInstance: {fileID: 5623167060657129108}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1896876683}
   - {fileID: 330585546}
+  - {fileID: 1720234001}
   - {fileID: 1325839383}
   - {fileID: 723475128}
   - {fileID: 5623167060657129108}
-  - {fileID: 1720234001}
   - {fileID: 568501663}
   - {fileID: 834224582}
   - {fileID: 332098589}

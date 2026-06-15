@@ -46,15 +46,17 @@ namespace GameServices
         private void Subscribe()
         {
             _eventBus.Subscribe<GameResultEvent>(OnGameResult);
-            _eventBus.Subscribe<RestartEvent>(Restart);
+            _eventBus.Subscribe<RestartEvent>(OnRestart);
             _eventBus.Subscribe<PauseEvent>(OnPauseResult);
+            _eventBus.Subscribe<StartGameEvent>(OnStartGame);
         }
         
         private void OnDestroy()
         {
             _eventBus.Unsubscribe<GameResultEvent>(OnGameResult);
-            _eventBus.Unsubscribe<RestartEvent>(Restart);
+            _eventBus.Unsubscribe<RestartEvent>(OnRestart);
             _eventBus.Unsubscribe<PauseEvent>(OnPauseResult);
+            _eventBus.Unsubscribe<StartGameEvent>(OnStartGame);
         }
 
         private void Update()
@@ -113,7 +115,6 @@ namespace GameServices
         {
             _enemies.Add(enemy);
             enemy.gameObject.SetActive(true);
-            enemy.Reset();
             enemy.Activate();
         }
 
@@ -213,10 +214,14 @@ namespace GameServices
             else ManagePaused(false, false);
         }
 
-        private void Restart(RestartEvent restartEvent)
+        private void OnRestart(RestartEvent restartEvent)
         {
-            if(!restartEvent.IsFirstGame) RealiseAll();
             StartGame();
+        }
+
+        private void OnStartGame(StartGameEvent startGameEvent)
+        {
+            RealiseAll();
         }
     }
 }

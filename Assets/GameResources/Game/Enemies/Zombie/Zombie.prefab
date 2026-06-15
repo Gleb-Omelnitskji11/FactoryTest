@@ -773,10 +773,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameUnits.ChaseEnemy
   _hpBar: {fileID: 2632702008637066067}
+  _renderer: {fileID: 3296607326958773650}
   _agroDistance: 10
   _moveSpeed: 2
   _animator: {fileID: 1554727079983907907}
   _rotateTransform: {fileID: 654019354370164731}
+  _skinnedMeshRenderer: {fileID: 3296607326958773650}
 --- !u!65 &8545573341622176683
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -48,7 +48,7 @@ namespace UI
         private void StartGame()
         {
             Hide();
-            _eventBus.Publish<StartGame>(new StartGame());
+            _eventBus.Publish<StartGameEvent>(new StartGameEvent());
         }
     }
 }
