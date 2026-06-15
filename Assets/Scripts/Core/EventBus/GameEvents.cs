@@ -21,6 +21,11 @@ namespace Core.BusEvents
             IsFirstGame = isFirstGame;
         }
     }
+
+    public class StartGame : IEvent
+    {
+        
+    }
     
     public class PauseEvent : IEvent
     {

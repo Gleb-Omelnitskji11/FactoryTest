@@ -7,12 +7,11 @@ using Zenject;
 
 namespace UI
 {
-    public class ResultPopup : MonoBehaviour
+    public class ResultPopup : BasePopup
     {
         [SerializeField] private TMP_Text _winText;
         [SerializeField] private TMP_Text _loseText;
         [SerializeField] private Button _repeatButton;
-        [SerializeField] private CanvasGroup _canvasGroup;
         
         private IEventBus _eventBus;
 
@@ -36,22 +35,20 @@ namespace UI
 
         private void OnGameEnd(GameResultEvent gameResultEvent)
         {
-            ShowResult(gameResultEvent.IsWin);
+            TurnOn(gameResultEvent.IsWin);
         }
 
-        private void ShowResult(bool win)
+        private void TurnOn(bool win)
         {
-            _canvasGroup.alpha = 1f;
-            _canvasGroup.blocksRaycasts = true;
+            Show();
             _loseText.gameObject.SetActive(!win);
             _winText.gameObject.SetActive(win);
         }
 
         private void StartGame()
         {
-            _canvasGroup.alpha = 0f;
-            _canvasGroup.blocksRaycasts = false;
-            _eventBus.Publish<RestartEvent>(new RestartEvent());
+            Hide();
+            _eventBus.Publish<StartGame>(new StartGame());
         }
     }
 }

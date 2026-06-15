@@ -6,7 +6,7 @@ using Zenject;
 
 namespace UI
 {
-    public class PausePopup : MonoBehaviour
+    public class PausePopup : BasePopup
     {
         [SerializeField] private Button _resumeButton;
         [SerializeField] private Button _restartButton;
@@ -33,9 +33,9 @@ namespace UI
             _quitButton.onClick.RemoveAllListeners();
         }
 
-        public void Show()
+        public void TurnOn()
         {
-            gameObject.SetActive(true);
+            Show();
             Pause();
         }
 
@@ -46,7 +46,7 @@ namespace UI
 
         private void Resume()
         {
-            gameObject.SetActive(false);
+            Hide();
             _eventBus.Publish<PauseEvent>(new PauseEvent(false));
         }
         

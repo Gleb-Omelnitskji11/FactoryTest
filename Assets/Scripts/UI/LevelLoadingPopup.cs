@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using Core;
 using Core.BusEvents;
@@ -5,14 +6,17 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace UI
 {
-    public class LevelLoadingPopup : MonoBehaviour
+    public class LevelLoadingPopup : BasePopup
     {
-        [SerializeField] private TMP_Text _timerText;
+        [SerializeField] private TMP_Text _mainText;
         [SerializeField] private TMP_Text _levelText;
+        
+        [SerializeField] private Button _button;
         [SerializeField] private int _seconds;
 
         private float _timer;
@@ -22,6 +26,8 @@ namespace UI
         private CancellationTokenSource _cts;
         private IEventBus _eventBus;
         private PlayerProgressSaver _playerProgress;
+        
+        private const string Description = "Press to start the game";
 
         [Inject]
         public void Construct(IEventBus eventBus, PlayerProgressSaver playerProgress)
@@ -33,8 +39,21 @@ namespace UI
         private void Start()
         {
             _cts = new CancellationTokenSource();
-            StartCountdown().Forget();
+            _button.onClick.AddListener(StartCountdown);
+            _eventBus.Subscribe<StartGame>(TurnOn);
+            TurnOn(null);
+        }
+
+        private void TurnOn(StartGame signal)
+        {
+            Show();
             _levelText.text = string.Format(LevelFormat, _playerProgress.CurrentLevel);
+            _mainText.text = Description;
+        }
+
+        private void StartCountdown()
+        {
+            Countdown().Forget();
         }
 
         private void OnDestroy()
@@ -43,15 +62,15 @@ namespace UI
             _cts?.Dispose();
         }
 
-        private async UniTask StartCountdown()
+        private async UniTask Countdown()
         {
             for (int i = _seconds; i > 0; i--)
             {
-                _timerText.text = i.ToString();
+                _mainText.text = i.ToString();
                 await WaitOneSecond();
             }
             
-            _timerText.text = "0";
+            _mainText.text = "0";
             StartGame();
         }
 
@@ -65,7 +84,7 @@ namespace UI
             if (_cts.Token.IsCancellationRequested)
                 return;
             
-            gameObject.SetActive(false);
+            Hide();
             _eventBus.Publish<RestartEvent>(new RestartEvent(true));
         }
     }

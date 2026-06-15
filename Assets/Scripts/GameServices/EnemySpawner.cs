@@ -156,7 +156,7 @@ namespace GameServices
         private void SpawnNewEnemy()
         {
             EnemyType enemyType = GetRandomEnemyType();
-            Vector3 pos = GetRandomPosition();
+            Vector3 pos = FindRandomFreePosition();
             string key = GetKey(enemyType);
             BasicEnemy enemy = _pooler.Get<BasicEnemy, EnemyModel>(key);
             enemy.transform.position = pos;
@@ -169,6 +169,18 @@ namespace GameServices
             return _levelModel.EnemyTypes[random];
         }
 
+        private Vector3 FindRandomFreePosition()
+        {
+            Vector3 newPos;
+            int attempts = 5;
+            do
+            {
+                newPos = GetRandomPosition();
+                attempts--;
+            } while (!IsPositionFree(newPos) && attempts > 0);
+            return newPos;
+        }
+
         private Vector3 GetRandomPosition()
         {
             Vector3 carPos = _playerCar.transform.position;
@@ -176,6 +188,17 @@ namespace GameServices
             float zRandom = Random.Range(_zEnemyMinDistance, _enemyOffSet.z);
             Vector3 pos = new Vector3(xRandom, _enemyOffSet.y, carPos.z + zRandom);
             return pos;
+        }
+
+        private bool IsPositionFree(Vector3 position)
+        {
+            foreach (var enemy in _enemies)
+            {
+                if (Vector3.Distance(enemy.transform.position, position) < enemy.EnemyUnitModel.Radius)
+                    return false;
+            }
+            
+            return true;
         }
         
         private void OnGameResult(GameResultEvent gameResultEvent)

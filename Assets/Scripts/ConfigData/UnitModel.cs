@@ -20,7 +20,9 @@ namespace ConfigData
     {
         [SerializeField] private EnemyType _type;
         [SerializeField] private int _points = 1;
+        [SerializeField] private float _radius = 3;
         public EnemyType EnemyType => _type;
         public int Points => _points;
+        public float Radius => _radius;
     }
 }
