@@ -297,13 +297,14 @@ GameObject:
   m_Component:
   - component: {fileID: 3749343726493468568}
   - component: {fileID: 1550098087567305654}
+  - component: {fileID: 5141617753598716379}
   m_Layer: 5
   m_Name: PausePopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3749343726493468568
 RectTransform:
   m_ObjectHideFlags: 0
@@ -337,9 +338,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75fb2673e1f9b184c86715d76be6c6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.PausePopup
+  _canvasGroup: {fileID: 5141617753598716379}
+  _duration: 0.5
   _resumeButton: {fileID: 7727663955497391528}
   _restartButton: {fileID: 4030710158750291657}
   _quitButton: {fileID: 1692437967530783880}
+--- !u!225 &5141617753598716379
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640774947782719561}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &3456243765571001896
 GameObject:
   m_ObjectHideFlags: 0

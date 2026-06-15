@@ -85,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1655863584373059605}
   - component: {fileID: 5335640241489500563}
-  - component: {fileID: 8899608041760246305}
+  - component: {fileID: 5069648275057058122}
   m_Layer: 5
   m_Name: ResultPopup
   m_TagString: Untagged
@@ -126,26 +126,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2cd8c0e71c58b43beb1dd19f080cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResultPopup
+  _canvasGroup: {fileID: 5069648275057058122}
+  _duration: 0.5
   _winText: {fileID: 411887823491664462}
   _loseText: {fileID: 633174567120608490}
   _repeatButton: {fileID: 4984672394720909923}
-  _canvasGroup: {fileID: 0}
---- !u!111 &8899608041760246305
-Animation:
+--- !u!225 &5069648275057058122
+CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548976765823791018}
   m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1566172509924577869
 GameObject:
   m_ObjectHideFlags: 0
