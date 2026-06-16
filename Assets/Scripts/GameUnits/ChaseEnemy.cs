@@ -26,6 +26,7 @@ namespace GameUnits
         {
             base.Reset();
             _isChasing = false;
+            _animator.speed = 1f;
             SetIdle();
         }
 
@@ -73,8 +74,8 @@ namespace GameUnits
         {
             _isChasing = true;
             _animator.SetBool(Chase, true);
-            if(_animator.GetCurrentAnimatorStateInfo(0).tagHash != Agro)
-                _animator.Play(Agro);
+            // if(_animator.GetCurrentAnimatorStateInfo(0).tagHash != Agro)
+            //     _animator.Play(Agro);
         }
 
         private void SetIdle()

@@ -20,7 +20,7 @@ MonoBehaviour:
       _collisionDamage: 20
       _speed: 5
   _turretModels:
-  - _turretView: {fileID: 919132149155446097, guid: 5a4fd921426175c40b2d2dd23a0c9953, type: 3}
+  - _turretView: {fileID: 9026102090984357539, guid: 859a446dbd12ad14a9e4ede622bfe6e6, type: 3}
     _fireDelay: 0.2
     _damageShoot: 5
     _rotationSpeed: 80
@@ -51,7 +51,7 @@ MonoBehaviour:
     _bulletPrefab: {fileID: 4272590811791952769, guid: 61ed03b8b411ad64693436a9e6c9f064, type: 3}
   _levelModels: []
   _defaultLevelModel:
-    _distance: 300
+    _distance: 100
     _enemyTypes: 0000000001000000
     _startCount: 5
     _enemyDelay: 0.5
