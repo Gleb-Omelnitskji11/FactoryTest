@@ -11,17 +11,15 @@ namespace Gameplay.GameServices
         private PlayerCar _car;
         private GameConfig _gameConfig;
 
-        private IEventBus _eventBus;
         private PlayerProgressSaver _playerProgressSaver;
         private PlayerProvider _playerProvider;
 
         [Inject]
-        public void Construct(ConfigProvider configProvider, IEventBus eventBus, PlayerProgressSaver playerProgressSaver,
+        public void Construct(ConfigProvider configProvider, PlayerProgressSaver playerProgressSaver,
             PlayerProvider playerProvider)
         {
             _playerProvider = playerProvider;
             _playerProgressSaver = playerProgressSaver;
-            _eventBus = eventBus;
             _gameConfig = configProvider.GameConfig;
         }
 

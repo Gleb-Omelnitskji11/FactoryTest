@@ -33,12 +33,14 @@ namespace Gameplay.GameServices
         
         private void Subscribe()
         {
-            _eventBus.Subscribe<GameResultEvent>(DeactivateAll);
+            _eventBus.Subscribe<GameResultEvent>(OnResult);
+            _eventBus.Subscribe<StartGameClickedEvent>(OnStart);
             _eventBus.Subscribe<PauseEvent>(OnPause);
         }
         public void Dispose()
         {
-            _eventBus.Unsubscribe<GameResultEvent>(DeactivateAll);
+            _eventBus.Unsubscribe<GameResultEvent>(OnResult);
+            _eventBus.Unsubscribe<StartGameClickedEvent>(OnStart);
             _eventBus.Unsubscribe<PauseEvent>(OnPause);
         }
 
@@ -46,6 +48,16 @@ namespace Gameplay.GameServices
         {
             _projectileType = projectileType;
             InitPool();
+        }
+        
+        private void InitPool()
+        {
+            ProjectileModel model = _gameConfig.GetProjectileModel(_projectileType);
+            string key = GetKey(_projectileType);
+
+            _pooler.CreatePool<BasicProjectile, ProjectileModel>(key, model, factory: CreateNewProjectileObj,
+                onGet: OnGetFromPool, onRelease: OnRealiseToPool,
+                prewarmCount: 0);
         }
 
         public T SpawnBullet<T>() where T : BasicProjectile
@@ -63,22 +75,15 @@ namespace Gameplay.GameServices
             }
         }
 
-        private void DeactivateAll(GameResultEvent startGameEvent)
+        private void OnStart(StartGameClickedEvent gameEvent) => DeactivateAll();
+        private void OnResult(GameResultEvent gameEvent) => DeactivateAll();
+
+        private void DeactivateAll()
         {
             while (_projectiles.Count > 0)
             {
                 _projectiles[0].Deactivate();
             }
-        }
-        
-        private void InitPool()
-        {
-            ProjectileModel model = _gameConfig.GetProjectileModel(_projectileType);
-            string key = GetKey(_projectileType);
-
-            _pooler.CreatePool<BasicProjectile, ProjectileModel>(key, model, factory: CreateNewProjectileObj,
-                onGet: OnGetFromPool, onRelease: OnRealiseToPool,
-                prewarmCount: 0);
         }
         
         private BasicProjectile CreateNewProjectileObj(ProjectileModel model)

@@ -22,7 +22,7 @@ namespace Core.BusEvents
         }
     }
 
-    public class StartGameEvent : IEvent
+    public class StartGameClickedEvent : IEvent
     {
         
     }

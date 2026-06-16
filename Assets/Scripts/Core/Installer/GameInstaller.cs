@@ -17,15 +17,15 @@ namespace Core.Installer
     
         public override void InstallBindings()
         {
-            Container.Bind<GameInstance>().FromInstance(_enemyInstance).AsCached();
-            Container.Bind<ProjectileSpawner>().AsCached();
-            Container.Bind<PlayerProvider>().AsCached();
-            Container.Bind<GroundsController>().FromInstance(_groundsController).AsCached();
-            Container.Bind<CameraController>().FromInstance(_cameraController).AsCached();
-            Container.Bind<EnemySpawner>().FromInstance(_enemySpawner).AsCached();
-            Container.Bind<LevelLoader>().FromInstance(_levelLoader).AsCached();
-            Container.Bind<IInputProvider>().FromInstance(_playerInputProvider).AsCached();
-            Container.Bind<ProgressBar>().FromInstance(_progressBar).AsCached();
+            Container.Bind<GameInstance>().FromInstance(_enemyInstance).AsSingle();
+            Container.BindInterfacesAndSelfTo<ProjectileSpawner>().AsSingle();
+            Container.Bind<PlayerProvider>().AsSingle();
+            Container.Bind<GroundsController>().FromInstance(_groundsController).AsSingle();
+            Container.Bind<CameraController>().FromInstance(_cameraController).AsSingle();
+            Container.Bind<EnemySpawner>().FromInstance(_enemySpawner).AsSingle();
+            Container.Bind<LevelLoader>().FromInstance(_levelLoader).AsSingle();
+            Container.Bind<IInputProvider>().FromInstance(_playerInputProvider).AsSingle();
+            Container.Bind<ProgressBar>().FromInstance(_progressBar).AsSingle();
         }
     }
 }

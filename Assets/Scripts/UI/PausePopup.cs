@@ -52,8 +52,9 @@ namespace UI
         
         private void Restart()
         {
-            gameObject.SetActive(false);
-            _eventBus.Publish<RestartEvent>(new RestartEvent());
+            Hide();
+            
+            _eventBus.Publish<StartGameClickedEvent>(new StartGameClickedEvent());
         }
 
         private void Exit()

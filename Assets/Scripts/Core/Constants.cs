@@ -2,8 +2,8 @@ namespace Core
 {
     public static class Constants
     {
-        public static string GameScene = "GameScene";
-        public static string Player = "Player";
-        public static string Enemy = "Enemy";
+        public const string GameScene = "GameScene";
+        public const string Player = "Player";
+        public const string Enemy = "Enemy";
     }
 }

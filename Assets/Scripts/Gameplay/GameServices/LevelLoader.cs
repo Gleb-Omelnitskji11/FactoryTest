@@ -38,6 +38,7 @@ namespace Gameplay.GameServices
             _eventBus.Subscribe<GameResultEvent>(OnGameEnd);
             _eventBus.Subscribe<RestartEvent>(Restart);
             _eventBus.Subscribe<PauseEvent>(OnPause);
+            _eventBus.Subscribe<StartGameClickedEvent>(OnStartClicked);
             Unit.SetDamagedMaterial(_materialForDamaged);
             
             ResetCar();
@@ -48,6 +49,15 @@ namespace Gameplay.GameServices
             _eventBus.Unsubscribe<GameResultEvent>(OnGameEnd);
             _eventBus.Unsubscribe<RestartEvent>(Restart);
             _eventBus.Unsubscribe<PauseEvent>(OnPause);
+            
+            _eventBus.Unsubscribe<StartGameClickedEvent>(OnStartClicked);
+        }
+
+        private void OnStartClicked(StartGameClickedEvent eventData)
+        {
+            _level = _gameConfig.GetLevelModel(_progressSaver.CurrentLevel);
+            ResetCar();
+            _progressBar.Setup(_level, _carStartPos.z);
         }
 
         private void Restart(RestartEvent restartEvent)
@@ -67,6 +77,7 @@ namespace Gameplay.GameServices
             var turretModel = _gameConfig.GetTurretModel(carData.TurretType);
             
             _car.InitUnit(carModel.UnitModel, turretModel);
+            _car.ResetCar();
         }
 
         private void OnLose()

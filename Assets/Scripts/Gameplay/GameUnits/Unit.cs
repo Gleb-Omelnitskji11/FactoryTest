@@ -14,7 +14,7 @@ namespace Gameplay.GameUnits
     
         protected int CurrentHp;
         protected UnitModel UnitModel;
-        protected const float DurationTakenDmgAnim = 0.2f;
+        protected const float DurationTakenDmgAnim = 0.1f;
 
         public void InitUnit(UnitModel model)
         {
@@ -58,7 +58,7 @@ namespace Gameplay.GameUnits
 
         protected virtual void AnimateTakeDamage()
         {
-            _renderer.material = DamagedMaterial;
+            _renderer.sharedMaterial = DamagedMaterial;
 
             CancelInvoke(nameof(ResetMaterial));
             Invoke(nameof(ResetMaterial), DurationTakenDmgAnim);
@@ -66,7 +66,7 @@ namespace Gameplay.GameUnits
 
         private void ResetMaterial()
         {
-            _renderer.material = MaterialCache;
+            _renderer.sharedMaterial = MaterialCache;
         }
 
         protected void TakeLethalDamage()

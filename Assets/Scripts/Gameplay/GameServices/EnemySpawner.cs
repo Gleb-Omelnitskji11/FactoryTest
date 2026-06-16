@@ -53,7 +53,7 @@ namespace Gameplay.GameServices
             _eventBus.Subscribe<GameResultEvent>(OnGameResult);
             _eventBus.Subscribe<RestartEvent>(OnRestart);
             _eventBus.Subscribe<PauseEvent>(OnPauseResult);
-            _eventBus.Subscribe<StartGameEvent>(OnStartGame);
+            _eventBus.Subscribe<StartGameClickedEvent>(OnStartGame);
         }
         
         private void OnDestroy()
@@ -61,7 +61,7 @@ namespace Gameplay.GameServices
             _eventBus.Unsubscribe<GameResultEvent>(OnGameResult);
             _eventBus.Unsubscribe<RestartEvent>(OnRestart);
             _eventBus.Unsubscribe<PauseEvent>(OnPauseResult);
-            _eventBus.Unsubscribe<StartGameEvent>(OnStartGame);
+            _eventBus.Unsubscribe<StartGameClickedEvent>(OnStartGame);
             
             _gameInstance.OnUpdate -= OnUpdate;
         }
@@ -236,7 +236,7 @@ namespace Gameplay.GameServices
             StartGame();
         }
 
-        private void OnStartGame(StartGameEvent startGameEvent)
+        private void OnStartGame(StartGameClickedEvent startGameClickedEvent)
         {
             RealiseAll();
         }

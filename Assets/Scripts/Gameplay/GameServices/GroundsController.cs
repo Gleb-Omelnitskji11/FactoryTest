@@ -33,7 +33,7 @@ namespace Gameplay.GameServices
         private void Start()
         {
             _eventBus.Subscribe<GameResultEvent>(OnGameResult);
-            _eventBus.Subscribe<RestartEvent>(Restart);
+            _eventBus.Subscribe<StartGameClickedEvent>(ResetData);
             _eventBus.Subscribe<PauseEvent>(OnPauseResult);
             
             _gameInstance.OnUpdate += OnUpdate;
@@ -42,7 +42,7 @@ namespace Gameplay.GameServices
         private void OnDestroy()
         {
             _eventBus.Unsubscribe<GameResultEvent>(OnGameResult);
-            _eventBus.Unsubscribe<RestartEvent>(Restart);
+            _eventBus.Unsubscribe<StartGameClickedEvent>(ResetData);
             _eventBus.Unsubscribe<PauseEvent>(OnPauseResult);
             _gameInstance.OnUpdate -= OnUpdate;
         }
@@ -64,7 +64,7 @@ namespace Gameplay.GameServices
 
         private void OnGameResult(GameResultEvent gameResultEvent)
         {
-            OnPause(false);
+            _active = false;
         }
         
         private void OnPauseResult(PauseEvent pauseEvent)
@@ -72,7 +72,7 @@ namespace Gameplay.GameServices
             OnPause(pauseEvent.IsPause);
         }
 
-        private void Restart(RestartEvent restartEvent)
+        private void ResetData(StartGameClickedEvent eventData)
         {
             _car = _playerProvider.PlayerCar.transform;
             _grounds[0].position = new Vector3(0f, 0f, GroundStart);

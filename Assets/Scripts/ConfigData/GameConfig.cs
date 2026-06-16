@@ -15,7 +15,7 @@ namespace ConfigData
 
         public LevelModel GetLevelModel(int level)
         {
-            return _levelModels.Length <= level ? _defaultLevelModel : _levelModels[level];
+            return _levelModels.Length <= level ? _defaultLevelModel : _levelModels[level - 1];
         }
 
         public PlayerUnitModel GetPlayerUnitModel(CarType carType)

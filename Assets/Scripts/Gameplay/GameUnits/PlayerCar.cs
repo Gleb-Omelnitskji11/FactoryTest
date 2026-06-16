@@ -35,7 +35,7 @@ namespace Gameplay.GameUnits
             _hpBar.Init(model.MaxHp);
         }
 
-        public void StartLevel(LevelModel levelModel)
+        public void ResetCar()
         {
             foreach (var trail in _trails)
             {
@@ -43,8 +43,12 @@ namespace Gameplay.GameUnits
             }
 
             _seq?.Kill();
-            UpdateDirection(levelModel.Distance);
             _turret.ResetRotation();
+        }
+
+        public void StartLevel(LevelModel levelModel)
+        {
+            UpdateDirection(levelModel.Distance);
             _turret.Resume();
         }
 
@@ -58,11 +62,6 @@ namespace Gameplay.GameUnits
         {
             _seq.Play();
             _turret.Resume();
-        }
-
-        public override void TakeDamage(int damageTaken)
-        {
-            base.TakeDamage(damageTaken);
         }
 
         protected override void Died()

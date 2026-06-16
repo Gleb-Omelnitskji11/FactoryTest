@@ -26,6 +26,7 @@ namespace UI
         private CancellationTokenSource _cts;
         private IEventBus _eventBus;
         private PlayerProgressSaver _playerProgress;
+        private bool _isCountdown;
         
         private const string Description = "Press to start the game";
 
@@ -40,11 +41,16 @@ namespace UI
         {
             _cts = new CancellationTokenSource();
             _button.onClick.AddListener(StartCountdown);
-            _eventBus.Subscribe<StartGameEvent>(TurnOn);
-            TurnOn(null);
+            _eventBus.Subscribe<StartGameClickedEvent>(OnStartGame);
+            TurnOn();
         }
 
-        private void TurnOn(StartGameEvent signal)
+        private void OnStartGame(StartGameClickedEvent signal)
+        {
+            TurnOn();
+        }
+
+        private void TurnOn()
         {
             Show();
             _levelText.text = string.Format(LevelFormat, _playerProgress.CurrentLevel);
@@ -53,11 +59,14 @@ namespace UI
 
         private void StartCountdown()
         {
+            if (_isCountdown) return;
+            _isCountdown = true;
             Countdown().Forget();
         }
 
         private void OnDestroy()
         {
+            _eventBus.Unsubscribe<StartGameClickedEvent>(OnStartGame);
             _cts?.Cancel();
             _cts?.Dispose();
         }
@@ -81,6 +90,7 @@ namespace UI
 
         private void StartGame()
         {
+            _isCountdown = false;
             if (_cts.Token.IsCancellationRequested)
                 return;
             
