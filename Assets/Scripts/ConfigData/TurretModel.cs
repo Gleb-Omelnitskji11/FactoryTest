@@ -1,5 +1,4 @@
 using System;
-using GameUnits;
 using UnityEngine;
 
 namespace ConfigData

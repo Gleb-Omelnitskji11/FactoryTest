@@ -1,5 +1,5 @@
 using System;
-using GameUnits;
+using Gameplay.GameUnits;
 
 namespace Core.ObjectPool
 {

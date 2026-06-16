@@ -9,7 +9,7 @@ namespace ConfigData
         [SerializeField] private PlayerUnitModel[] _playerUnits = new PlayerUnitModel[1];
         [SerializeField] private TurretModel[] _turretModels = new TurretModel[1];
         [SerializeField] private EnemyModel[] _enemyModels = new EnemyModel[2];
-        [SerializeField] private ProjectaleModel[] _projectileModels= new ProjectaleModel[1];
+        [SerializeField] private ProjectileModel[] _projectileModels= new ProjectileModel[1];
         [SerializeField] private LevelModel[] _levelModels = new LevelModel[0];
         [SerializeField] private LevelModel _defaultLevelModel;
 
@@ -51,7 +51,7 @@ namespace ConfigData
             throw new Exception($"No turret found for type {turretType}");
         }    
         
-        public ProjectaleModel GetProjectileModel(ProjectileType projectileType)
+        public ProjectileModel GetProjectileModel(ProjectileType projectileType)
         {
             foreach (var projectile in _projectileModels)
             {

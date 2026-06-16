@@ -40,7 +40,7 @@ namespace UI
         public void UpdateState(int newValue)
         {
             _hpBar.value = newValue;
-            int i = 0;
+            int i = 1;
             for (; i < _hpStates.Length; i++)
             {
                 if (_hpStates[i].MinValue > (float) newValue/ _hpBar.maxValue)

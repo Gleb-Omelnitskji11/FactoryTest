@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using GameUnits;
+using Gameplay.GameUnits;
 using UnityEngine;
 
 namespace Core.ObjectPool

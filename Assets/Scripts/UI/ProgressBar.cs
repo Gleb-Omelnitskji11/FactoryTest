@@ -1,7 +1,7 @@
 using ConfigData;
 using Core;
 using Core.BusEvents;
-using GameServices;
+using Gameplay.GameServices;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -28,19 +28,13 @@ namespace UI
         {
             _playerProvider = playerProvider;
             _eventBus = eventBus;
-
-            _eventBus.Subscribe<RestartEvent>(UpdatePlayerCar);
-        }
-
-        private void UpdatePlayerCar(RestartEvent restartEvent)
-        {
-            _carTransform = _playerProvider.PlayerCar.transform;
         }
 
         public void Setup(LevelModel level, float startZ)
         {
             _startZ = startZ;
             _level = level;
+            _carTransform = _playerProvider.PlayerCar.transform;
             _paused = false;
         }
 
