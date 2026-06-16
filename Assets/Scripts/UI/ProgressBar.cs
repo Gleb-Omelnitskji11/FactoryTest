@@ -1,7 +1,7 @@
 using ConfigData;
 using Core;
 using Core.BusEvents;
-using GameUnits;
+using GameServices;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -13,20 +13,28 @@ namespace UI
     {
         [SerializeField] private Slider _progressBar;
         [SerializeField] private TMP_Text _timerText;
-        
+
         private LevelModel _level;
         private float _startZ;
         private int _progress;
         private Transform _carTransform;
         private bool _paused = true;
-        
+
         private IEventBus _eventBus;
+        private PlayerProvider _playerProvider;
 
         [Inject]
-        public void Construct(IEventBus eventBus, PlayerCar playerCar)
+        public void Construct(IEventBus eventBus, PlayerProvider playerProvider)
         {
-            _carTransform = playerCar.transform;
+            _playerProvider = playerProvider;
             _eventBus = eventBus;
+
+            _eventBus.Subscribe<RestartEvent>(UpdatePlayerCar);
+        }
+
+        private void UpdatePlayerCar(RestartEvent restartEvent)
+        {
+            _carTransform = _playerProvider.PlayerCar.transform;
         }
 
         public void Setup(LevelModel level, float startZ)

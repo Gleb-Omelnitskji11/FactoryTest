@@ -32,13 +32,13 @@ namespace GameServices
         
         private void Subscribe()
         {
-            _eventBus.Subscribe<RestartEvent>(DeactivateAll);
+            _eventBus.Subscribe<StartGameEvent>(DeactivateAll);
             _eventBus.Subscribe<PauseEvent>(OnPause);
         }
         
         ~ProjectileSpawner()
         {
-            _eventBus.Unsubscribe<RestartEvent>(DeactivateAll);
+            _eventBus.Unsubscribe<StartGameEvent>(DeactivateAll);
             _eventBus.Unsubscribe<PauseEvent>(OnPause);
         }
 
@@ -63,7 +63,7 @@ namespace GameServices
             }
         }
 
-        private void DeactivateAll(RestartEvent restartEvent)
+        private void DeactivateAll(StartGameEvent startGameEvent)
         {
             while (_projectiles.Count > 0)
             {

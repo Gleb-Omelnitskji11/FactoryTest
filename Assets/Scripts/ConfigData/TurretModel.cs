@@ -7,7 +7,7 @@ namespace ConfigData
     [Serializable]
     public class TurretModel
     {
-        [SerializeField] private Turret _turretView;
+        [SerializeField] private GameObject _turretView;
         [SerializeField] private float _fireDelay;
         [SerializeField] private float _damageShoot;
         [SerializeField] private float _rotationSpeed;
@@ -20,5 +20,6 @@ namespace ConfigData
         public float RotationSpeed => _rotationSpeed;
         public ProjectileType ProjectileTypes => _projectileType;
         public TurretType TurretType => _turretType;
+        public GameObject TurretPrefab => _turretView;
     }
 }

@@ -27,6 +27,11 @@ namespace GameUnits
             _eventBus = eventBus;
         }
 
+        public void ReplaceTurret(TurretModel turret)
+        {
+            _turret.CreateObject(turret);
+        }
+
         public void InitUnit(UnitModel model, TurretModel turretModel)
         {
             base.InitUnit(model);
@@ -43,7 +48,8 @@ namespace GameUnits
 
             _seq?.Kill();
             UpdateDirection(levelModel.Distance);
-            _turret.Activate();
+            _turret.ResetRotation();
+            _turret.Resume();
         }
 
         public void Stop()
@@ -55,7 +61,7 @@ namespace GameUnits
         public void Resume()
         {
             _seq.Play();
-            _turret.Activate();
+            _turret.Resume();
         }
 
         public override void TakeDamage(int damageTaken)

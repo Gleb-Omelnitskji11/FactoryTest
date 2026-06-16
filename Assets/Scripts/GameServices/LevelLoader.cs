@@ -20,15 +20,16 @@ namespace GameServices
         private IEventBus _eventBus;
         private PlayerProgressSaver _progressSaver;
         private LevelModel _level;
+        private PlayerProvider _playerProvider;
 
         [Inject]
-        public void Construct(PlayerCar playerCar, ConfigProvider configProvider, ProgressBar progressBar,
+        public void Construct(PlayerProvider playerProvider, ConfigProvider configProvider, ProgressBar progressBar,
             IEventBus eventBus, PlayerProgressSaver progressSaver)
         {
+            _playerProvider = playerProvider;
             _progressSaver = progressSaver;
             _eventBus = eventBus;
             _progressBar = progressBar;
-            _car = playerCar;
             _gameConfig = configProvider.GameConfig;
         }
 
@@ -49,6 +50,7 @@ namespace GameServices
 
         private void Restart(RestartEvent restartEvent)
         {
+            _car = _playerProvider.PlayerCar;
             _level = _gameConfig.GetLevelModel(_progressSaver.CurrentLevel);
             ResetCar();
             _progressBar.Setup(_level, _carStartPos.z);

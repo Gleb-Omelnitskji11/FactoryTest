@@ -1,6 +1,4 @@
-using System;
 using ConfigData;
-using Core;
 using GameServices;
 using UnityEngine;
 using Zenject;
@@ -10,7 +8,7 @@ namespace GameUnits
     public class Turret : MonoBehaviour
     {
         [SerializeField] private Transform _bulletSpawnPoint;
-        [SerializeField] private Transform _turretObj;
+        private GameObject _turretObj;
     
         private TurretModel _turretModel;
         private Quaternion _targetRotation = Quaternion.identity;
@@ -27,6 +25,18 @@ namespace GameUnits
             _projectileSpawner = projectileSpawner;
         }
 
+        public void CreateObject(TurretModel turretModel)
+        {
+            if (turretModel.TurretType == _turretModel?.TurretType && _turretObj != null) return;
+            if(_turretObj != null) Destroy(_turretObj.gameObject);
+
+            _turretObj = Instantiate(turretModel.TurretPrefab, transform);
+            _turretObj.transform.localPosition = Vector3.zero;
+            _turretObj.transform.rotation = Quaternion.identity;
+            _turretModel = turretModel;
+
+        }
+
         public void Init(TurretModel model)
         {
             _turretModel = model;
@@ -38,9 +48,14 @@ namespace GameUnits
             _stop = true;
         }
 
-        public void Activate()
+        public void Resume()
         {
             _stop = false;
+        }
+
+        public void ResetRotation()
+        {
+            transform.rotation = Quaternion.identity;
         }
 
         private void Update()

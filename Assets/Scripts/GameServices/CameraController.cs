@@ -1,3 +1,5 @@
+using Core;
+using Core.BusEvents;
 using GameUnits;
 using UnityEngine;
 using Zenject;
@@ -6,16 +8,27 @@ namespace GameServices
 {
     public class CameraController : MonoBehaviour
     {
-        [SerializeField] private bool _follow = true;
         [SerializeField] private Transform _cameraTransform;
         [SerializeField] private Vector3 _gamePositionOffSet = new Vector3(0f, 10.13f, -8.14f);
+        
         private Vector3 _currentPosition;
         private Transform _car;
-    
+        private PlayerProvider _playerProvider;
+        private IEventBus _eventBus;
+        private bool _follow;
+
         [Inject]
-        public void Construct(PlayerCar playerCar)
+        public void Construct(PlayerProvider playerProvider, IEventBus eventBus)
         {
-            _car = playerCar.transform;
+            _eventBus = eventBus;
+            _playerProvider = playerProvider;
+            _eventBus.Subscribe<RestartEvent>(UpdatePlayerCar);
+        }
+
+        private void UpdatePlayerCar(RestartEvent restartEvent)
+        {
+            _car = _playerProvider.PlayerCar.transform;
+            _follow = true;
         }
 
         private void LateUpdate()

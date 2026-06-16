@@ -10,7 +10,6 @@ namespace Core.Installer
     {
         [SerializeField] private EnemySpawner _enemySpawner;
         [SerializeField] private GroundsController _groundsController;
-        [SerializeField] private PlayerCar _player;
         [SerializeField] private LevelLoader _levelLoader;
         [SerializeField] private CameraController _cameraController;
         [SerializeField] private PlayerInputProvider _playerInputProvider;
@@ -18,8 +17,8 @@ namespace Core.Installer
     
         public override void InstallBindings()
         {
-            Container.Bind<PlayerCar>().FromInstance(_player).AsCached();
             Container.Bind<ProjectileSpawner>().AsCached();
+            Container.Bind<PlayerProvider>().AsCached();
             Container.Bind<GroundsController>().FromInstance(_groundsController).AsCached();
             Container.Bind<CameraController>().FromInstance(_cameraController).AsCached();
             Container.Bind<EnemySpawner>().FromInstance(_enemySpawner).AsCached();

@@ -281,7 +281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9c04d1a2b3d8649836eff6f035111d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
-  _follow: 1
   _cameraTransform: {fileID: 330585546}
   _gamePositionOffSet: {x: 0, y: 10.13, z: -7}
 --- !u!1 &332098587
@@ -1003,6 +1002,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3414860448327720953, guid: 3221bb7894d6c4b42ad2023bb2725288, type: 3}
   m_PrefabInstance: {fileID: 1524064995}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1535656117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1535656119}
+  - component: {fileID: 1535656118}
+  m_Layer: 0
+  m_Name: PlayerBuilder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1535656118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535656117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56580d147b63ca348a75fae5a2d1c20f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FacturaTest::GameServices.GameCarBuilder
+  _carStartPos: {x: 0, y: 0.57, z: -33.39}
+--- !u!4 &1535656119
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535656117}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.38424, y: 1.56873, z: 67.97597}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1595699003
 GameObject:
   m_ObjectHideFlags: 0
@@ -1537,7 +1581,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameInstaller
   _enemySpawner: {fileID: 332098588}
   _groundsController: {fileID: 1325839382}
-  _player: {fileID: 5623167060657129109}
   _levelLoader: {fileID: 1720234002}
   _cameraController: {fileID: 330585548}
   _playerInputProvider: {fileID: 723475127}
@@ -2022,95 +2065,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3221bb7894d6c4b42ad2023bb2725288, type: 3}
---- !u!1001 &5623167060657129108
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 324771757512002771, guid: df777687f76176445b28acb722d8c6d2, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 330585545}
-    - target: {fileID: 364834939481265921, guid: df777687f76176445b28acb722d8c6d2, type: 3}
-      propertyPath: _meshRenderer
-      value: 
-      objectReference: {fileID: 5623167060657129110}
-    - target: {fileID: 3084562519942267600, guid: df777687f76176445b28acb722d8c6d2, type: 3}
-      propertyPath: m_Name
-      value: Car
-      objectReference: {fileID: 0}
-    - target: {fileID: 7685995102594583029, guid: df777687f76176445b28acb722d8c6d2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7685995102594583029, guid: df777687f76176445b28acb722d8c6d2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.57
-      objectReference: {fileID: 0}
-    - target: {fileID: 7685995102594583029, guid: df777687f76176445b28acb722d8c6d2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -33.39
-      objectReference: {fileID: 0}
-    - target: {fileID: 7685995102594583029, guid: df777687f76176445b28acb722d8c6d2, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7685995102594583029, guid: df777687f76176445b28acb722d8c6d2, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7685995102594583029, guid: df777687f76176445b28acb722d8c6d2, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7685995102594583029, guid: df777687f76176445b28acb722d8c6d2, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7685995102594583029, guid: df777687f76176445b28acb722d8c6d2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7685995102594583029, guid: df777687f76176445b28acb722d8c6d2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7685995102594583029, guid: df777687f76176445b28acb722d8c6d2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9185613183514803966, guid: df777687f76176445b28acb722d8c6d2, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9185613183514803966, guid: df777687f76176445b28acb722d8c6d2, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: df777687f76176445b28acb722d8c6d2, type: 3}
---- !u!114 &5623167060657129109 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 364834939481265921, guid: df777687f76176445b28acb722d8c6d2, type: 3}
-  m_PrefabInstance: {fileID: 5623167060657129108}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f14e4fcf0004dc34b9c88730d8dbe460, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerCar
---- !u!23 &5623167060657129110 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 8822832380035404006, guid: df777687f76176445b28acb722d8c6d2, type: 3}
-  m_PrefabInstance: {fileID: 5623167060657129108}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2118,9 +2072,9 @@ SceneRoots:
   - {fileID: 1896876683}
   - {fileID: 330585546}
   - {fileID: 1720234001}
+  - {fileID: 1535656119}
   - {fileID: 1325839383}
   - {fileID: 723475128}
-  - {fileID: 5623167060657129108}
   - {fileID: 568501663}
   - {fileID: 834224582}
   - {fileID: 332098589}

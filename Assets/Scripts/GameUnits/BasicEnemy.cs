@@ -56,7 +56,8 @@ namespace GameUnits
                 if (other.TryGetComponent<PlayerCar>(out PlayerCar player))
                 {
                     TakeLethalDamage();
-                    player.TakeDamage(GetCollisionDamage());
+                    var dmg = GetCollisionDamage();
+                    player.TakeDamage(dmg);
                 }
             }
         }

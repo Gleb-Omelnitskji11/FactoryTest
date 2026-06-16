@@ -20,11 +20,12 @@ namespace GameServices
         private float _nextZPoint;
         private bool _active;
         private IEventBus _eventBus;
+        private PlayerProvider _playerProvider;
 
         [Inject]
-        public void Construct(PlayerCar car, IEventBus eventBus)
+        public void Construct(PlayerProvider playerProvider, IEventBus eventBus)
         {
-            _car = car.transform;
+            _playerProvider = playerProvider;
             _eventBus = eventBus;
         }
 
@@ -69,6 +70,7 @@ namespace GameServices
 
         private void Restart(RestartEvent restartEvent)
         {
+            _car = _playerProvider.PlayerCar.transform;
             _grounds[0].position = new Vector3(0f, 0f, GroundStart);
             _grounds[1].position = new Vector3(0f, 0f, MoverOffset);
             _currentGroundIndex = 0;

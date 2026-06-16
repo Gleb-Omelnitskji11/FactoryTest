@@ -1,3 +1,4 @@
+using System;
 using ConfigData;
 using DG.Tweening;
 using UI;
@@ -9,30 +10,24 @@ namespace GameUnits
     {
         [SerializeField] protected HpBar _hpBar;
         [SerializeField] protected Renderer _renderer;
-        [SerializeField] protected Material _materialCache;
-        protected static Material _damagedMaterial;
+        protected Material MaterialCache;
+        
+        protected static Material DamagedMaterial;
     
         protected int CurrentHp;
         protected UnitModel UnitModel;
-        //protected Tween _resetDmgAnimation;
-        protected const float _durationTakenDmgAnim = 0.3f;
-
-        private void Start()
-        {
-            //_resetDmgAnimation = DOVirtual.DelayedCall(_durationTakenDmgAnim, ResetMaterial).SetAutoKill(false).Pause();
-            
-        }
+        protected const float DurationTakenDmgAnim = 0.2f;
 
         public void InitUnit(UnitModel model)
         {
             UnitModel = model;
-            _materialCache = _renderer.material;
+            MaterialCache = _renderer.material;
             Reset();
         }
 
         public static void SetDamagedMaterial(Material material)
         {
-            _damagedMaterial = material;
+            DamagedMaterial = material;
         }
 
         public virtual void Reset()
@@ -40,6 +35,11 @@ namespace GameUnits
             ResetMaterial();
             CurrentHp = UnitModel.MaxHp;
             _hpBar.Init(UnitModel.MaxHp);
+        }
+
+        protected void OnDestroy()
+        {
+            CancelInvoke(nameof(ResetMaterial));
         }
 
         protected int GetCollisionDamage() => UnitModel.CollisionDamage;
@@ -60,15 +60,15 @@ namespace GameUnits
 
         protected virtual void AnimateTakeDamage()
         {
-            _renderer.material = _damagedMaterial;
+            _renderer.material = DamagedMaterial;
 
             CancelInvoke(nameof(ResetMaterial));
-            Invoke(nameof(ResetMaterial), _durationTakenDmgAnim);
+            Invoke(nameof(ResetMaterial), DurationTakenDmgAnim);
         }
 
         private void ResetMaterial()
         {
-            _renderer.material = _materialCache;
+            _renderer.material = MaterialCache;
         }
 
         protected void TakeLethalDamage()

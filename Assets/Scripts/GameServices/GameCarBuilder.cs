@@ -15,37 +15,31 @@ namespace GameServices
         private GameConfig _gameConfig;
 
         private IEventBus _eventBus;
+        private PlayerProgressSaver _playerProgressSaver;
+        private PlayerProvider _playerProvider;
 
         [Inject]
-        public void Construct(ConfigProvider configProvider, IEventBus eventBus, PlayerCar playerCar)
+        public void Construct(ConfigProvider configProvider, IEventBus eventBus, PlayerProgressSaver playerProgressSaver,
+            PlayerProvider playerProvider)
         {
+            _playerProvider = playerProvider;
+            _playerProgressSaver = playerProgressSaver;
             _eventBus = eventBus;
             _gameConfig = configProvider.GameConfig;
-            _car = playerCar;
         }
 
-        // private void Start()
-        // {
-        //     _eventBus.Subscribe<RestartEvent>(Restart);
-        // }
-        //
-        // private void OnDestroy()
-        // {
-        //     _eventBus.Unsubscribe<RestartEvent>(Restart);
-        // }
+        private void Start()
+        {
+            CreatePlayer();
+        }
 
-        // private void Restart(RestartEvent restartEvent)
-        // {
-        //     ResetCar();
-        //     _car.StartLevel();
-        // }
-
-        // private void ResetCar()
-        // {
-        //     _car.transform.position = _carStartPos;
-        //     var carModel = _gameConfig.GetUnitModel(UnitType.Player);
-        //     var turretModel = _gameConfig.GetTurretModel(0);
-        //     _car.InitUnit(carModel, turretModel, _gameConfig.GetDefaultLevelModel);
-        // }
+        private void CreatePlayer()
+        {
+            var carModel = _gameConfig.GetPlayerUnitModel(_playerProgressSaver.CarData.CarType);
+            _car = Instantiate(carModel.CarPrefab, _carStartPos, Quaternion.identity);
+            var turretModel = _gameConfig.GetTurretModel(_playerProgressSaver.CarData.TurretType);
+            _car.ReplaceTurret(turretModel);
+            _playerProvider.PlayerCar = _car;
+        }
     }
 }

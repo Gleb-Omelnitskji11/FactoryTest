@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 364834939481265921}
   - component: {fileID: 6334568842517973114}
   - component: {fileID: 4418970892909143439}
+  - component: {fileID: 5193959280079841503}
   m_Layer: 6
   m_Name: Car
   m_TagString: Player
@@ -250,6 +251,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5193959280079841503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3084562519942267600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Zenject::Zenject.ZenAutoInjecter
+  _containerSource: 2
 --- !u!1 &6408882485971058451
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +592,8 @@ PrefabInstance:
       value: TurretHolder
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2839384554542997984, guid: 210e6ce323668a141b4d0698cb8696c8, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 210e6ce323668a141b4d0698cb8696c8, type: 3}

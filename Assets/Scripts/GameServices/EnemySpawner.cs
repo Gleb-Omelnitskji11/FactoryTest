@@ -27,14 +27,15 @@ namespace GameServices
         private int _initialSize;
         private List<BasicEnemy> _enemies = new List<BasicEnemy>();
         private PlayerProgressSaver _progressSaver;
+        private PlayerProvider _playerProvider;
 
         [Inject]
-        public void Construct(IObjectPooler pooler, ConfigProvider configProvider, PlayerCar playerCar, IEventBus eventBus, PlayerProgressSaver progressSaver)
+        public void Construct(IObjectPooler pooler, ConfigProvider configProvider, PlayerProvider playerProvider, IEventBus eventBus, PlayerProgressSaver progressSaver)
         {
+            _playerProvider = playerProvider;
             _progressSaver = progressSaver;
             _pooler = pooler;
             _gameConfig = configProvider.GameConfig;
-            _playerCar = playerCar;
             _eventBus = eventBus;
         }
 
@@ -75,10 +76,17 @@ namespace GameServices
 
         private void StartGame()
         {
+            UpdatePlayerCar();
             SetLevel();
             InitPools();
             SetNearestEnemies();
             ManagePaused(false);
+        }
+        
+
+        private void UpdatePlayerCar()
+        {
+            _playerCar = _playerProvider.PlayerCar;
         }
         
         private void RealiseAll()

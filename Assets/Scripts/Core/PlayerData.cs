@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using ConfigData;
 using UnityEngine.Serialization;
 
@@ -11,9 +10,6 @@ namespace Core
         [FormerlySerializedAs("Level")] public int CurrentLevel;
         public int Currency;
         public CarData CurrentCar;
-
-        //public List<TurretType> PurchasedTurrets;
-        //public List<CarType> PurchasedCars;
     }
 
     [Serializable]
